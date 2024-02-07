@@ -1,4 +1,4 @@
-# reviewing-java 💻
+"# reviewing-java 💻
 
 ## Sumário
 1. [Download do Java JDK](#1-passo)
@@ -6,13 +6,24 @@
 3. [Estrutura de uma aplicação](#estrutura-de-uma-aplicaçao)
 4. [Desenvolvimento](#desenvolvimento)
     - [Estrutura Sequencial](#estrutura-sequencial)
-        - [Expressoes aritméticos](#expressoes-aritmeticas)
+        - [Expressões aritméticos](#expressoes-aritmeticas)
         - [Operadores aritméticos](#operadores-aritmeticos)
         - [Precedência de Operadores](#precedencia-de-operadores)
         - [Tipos primitivos de váriaveis](#tipos-primitivos-de-variaveis)
         - [Padrões de nome para váriaveis](#padroes-de-nome-para-variaveis)
         - [Casting Explícito](#casting-explicito) 
         - [Funções Matemáticas](#funçoes-matematicas)
+    - [Estrutura Condicional](#estrutura-condicional)
+        - [Expressoes Comparativas](#expressoes-comparativas)
+        - [Operadores Comparativos](#operadores-comparativos)
+        - [Operadores Logicos](#operadores-logicos)
+            - [Estrutura Condicional:](#estrutura-condicional)
+                - [If/else](#if-else)
+                - [Switch](#switch)
+        - [Atribuição Acumulativa](#atribuiçao-acumulativa)
+        - [Expressão Condicional Ternária](#expressao-condicional-ternaria)
+        - [Escopo e Variáveis](#escopo-e-variaveis)
+
 ##
 
 ### 1. Passo
@@ -154,7 +165,6 @@ MeuProjeto
 
     - ### Funçoes Matematicas
 
-
     | Função                          | Descrição                                                                                                                                                                            |
     |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | `Math.abs(double a)`            | Retorna o valor absoluto de um número.                                                                                                                                               |
@@ -172,3 +182,156 @@ MeuProjeto
     | `Math.PI`                       | Retorna o valor de pi (π), uma constante matemática.                                                                                                                                 |
 
     Essas funções da classe `Math` em Java são úteis para uma ampla variedade de tarefas matemáticas em programação.
+
+    ##
+
+- ### Estrutura Condicional
+    - ###  Expressoes Comparativas
+    <div align="center">
+        <img src="https://media.discordapp.net/attachments/1039503054489255957/1204579221733900298/image.png?ex=65d53ed2&is=65c2c9d2&hm=eca2d2d61d909c21c916422faad8d9ab8bdbc6341495e8cd37e314fec2b22271&=&format=webp&quality=lossless">
+    </div>
+
+    ##
+
+    - ### Operadores Comparativos
+
+    | Operador | Descrição                              | Exemplo                 | Resultado  |
+    |----------|----------------------------------------|-------------------------|------------|
+    | `==`     | Igualdade                              | `5 == 5`                | `true`     |
+    | `!=`     | Não igual                              | `5 != 5`                | `false`    |
+    | `>`      | Maior que                              | `3 > 5`                 | `false`    |
+    | `<`      | Menor que                              | `3 < 5`                 | `true`     |
+    | `>=`     | Maior ou igual a                       | `5 >= 5`                | `true`     |
+    | `<=`     | Menor ou igual a                       | `3 <= 5`                | `true`     |
+
+    Esses operadores são usados para comparar valores em expressões condicionais e retornam um valor booleano (`true` ou `false`) com base no resultado da comparação.
+
+    ##
+
+    - ### Operadores Logicos
+
+
+    | Operador | Descrição                                      | Exemplo                   | Resultado  |
+    |----------|------------------------------------------------|---------------------------|------------|
+    | `&&`     | E lógico (AND)                                | `true && false`           | `false`     |
+    | `\|\|`   | OU lógico (OR)                                | `true \|\| false`         | `true`      |
+    | `!`      | Negação lógica (NOT)                          | `!true`                   | `false`     |
+
+    Esses operadores são utilizados para realizar operações lógicas em expressões booleanas. O operador `&&` retorna `true` se ambos os operandos forem `true`, o operador `||` retorna `true` se pelo menos um dos operandos for `true`, e o operador `!` nega o valor do operando, ou seja, se o operando for `true`, o resultado será `false`, e vice-versa.
+
+     ##
+
+    - ### Estrutura Condicional
+        - ## If-else
+        - Estrutura do If `Simples`:
+            ```java
+                if ( <condição> ) {
+                    // Ativo quando a condição é (TRUE)
+                } 
+            ```
+        - Estrutura do If `Composta`:
+            ```java
+                if ( <condição> ) {
+                    // Ativo quando a condição é (TRUE)
+                } else {
+                    // Ativo quando a condição é (FALSE)
+                }
+            ```
+        - Encadeamento de Estrutura If:
+            ```java
+                if ( <condição> ) {
+                    // Ativo quando a condição é (TRUE)
+                } else {
+                    if ( <condição> ) {
+                        // Ativo quando a condição é (TRUE)
+                    } else {
+                        // Ativo quando a condição é (FALSE)
+                    }
+                }
+            ```
+        
+        ##
+         
+        - ## Switch
+        - Estrutura do `Switch`:
+            ```java
+                switch (expressao) {
+                case valor1:
+                    // código a ser executado se a expressão for igual a valor1
+                    break;
+                case valor2:
+                    // código a ser executado se a expressão for igual a valor2
+                    break;
+                default:
+                    // código a ser executado se nenhum dos casos anteriores for correspondido
+                }
+            ```
+            - `expressao`: É o valor que será avaliado para determinar qual caso será executado.
+            - `valor1`, `valor2`: Podem ser valores numéricos, caracteres, strings ou até mesmo expressões constantes.
+    
+
+    - ### Atribuiçao Acumulativa
+
+    | Operador | Descrição                                    | Exemplo                 | Equivalente a |
+    |----------|----------------------------------------------|-------------------------|---------------|
+    | `+=`     | Adição acumulativa                           | `a += 5;`               | `a = a + 5;`  |
+    | `-=`     | Subtração acumulativa                        | `a -= 3;`               | `a = a - 3;`  |
+    | `*=`     | Multiplicação acumulativa                    | `a *= 2;`               | `a = a * 2;`  |
+    | `/=`     | Divisão acumulativa                          | `a /= 4;`               | `a = a / 4;`  |
+    | `%=`     | Resto da divisão acumulativa                 | `a %= 3;`               | `a = a % 3;`  |
+
+    Esses operadores combinam uma operação aritmética ou lógica com uma atribuição, tornando o código mais conciso e legível.
+
+    ##
+
+    - ### Expressao Condicional Ternaria
+    - Estrutura:
+    ```java
+        variavel = (condicao) ? valorSeVerdadeiro : valorSeFalso;
+    ```
+    - `condicao`: É a expressão booleana que será avaliada. Se for verdadeira, o valorSeVerdadeiro será atribuído à variável; caso contrário, o valorSeFalso será atribuído.
+    - `valorSeVerdadeiro`: Valor atribuído à variável se a condição for verdadeira.
+    - `valorSeFalso`: Valor atribuído à variável se a condição for falsa.
+    Ex:
+    ```java
+        String exemploVariavel = (10 < 5) ? "Caso a expressão for (TRUE)" : "Caso a expressão for (FALSE)";
+    ```
+
+    ##
+
+    - ### Escopo e Variaveis
+    Quando declaramos uma variável dentro de um bloco `if`, ela só é acessível dentro desse bloco e seus blocos filhos, como o bloco `else` ou outros blocos `if` dentro do bloco `if` original. Isso é conhecido como escopo local.
+
+    Exemplo:
+
+    ```java
+        if (idade >= 18) {
+            String status = "Maior de idade"; // Declaração e inicialização da variável dentro do bloco if
+            System.out.println(status); // Imprime o status
+        } else {
+            String status = "Menor de idade"; // Declaração e inicialização da variável dentro do bloco else
+            System.out.println(status); // Imprime o status
+        }
+
+        // A variável status não é acessível aqui fora do bloco if-else
+        // System.out.println(status); // Isso causaria um erro
+    ```
+
+    Para tornar a variável `status` acessível fora do escopo do bloco `if`, devemos declará-la fora do escopo local:
+
+    ```java
+        String status; // Declaração da variável fora do escopo local
+
+        if (idade >= 18) {
+            status = "Maior de idade"; // Inicialização da variável dentro do bloco if
+            System.out.println(status); // Imprime o status
+        } else {
+            status = "Menor de idade"; // Inicialização da variável dentro do bloco else
+            System.out.println(status); // Imprime o status
+        }
+
+        // Agora a variável status é acessível fora dos blocos if e else
+        System.out.println("Status: " + status);
+    ```
+
+    Agora, a variável `status` pode ser acessada fora dos blocos `if` e `else`, permitindo seu uso em outras partes do código."
