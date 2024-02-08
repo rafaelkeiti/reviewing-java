@@ -1,4 +1,4 @@
-"# reviewing-java 💻
+# reviewing-java 💻
 
 ## Sumário
 1. [Download do Java JDK](#1-passo)
@@ -17,12 +17,17 @@
         - [Expressoes Comparativas](#expressoes-comparativas)
         - [Operadores Comparativos](#operadores-comparativos)
         - [Operadores Logicos](#operadores-logicos)
-            - [Estrutura Condicional:](#estrutura-condicional)
-                - [If/else](#if-else)
-                - [Switch](#switch)
+        - [Estruturas Condicionais:](#estruturas-condicionais)
+            - [If/else](#if-else)
+            - [Switch](#switch)
         - [Atribuição Acumulativa](#atribuiçao-acumulativa)
         - [Expressão Condicional Ternária](#expressao-condicional-ternaria)
         - [Escopo e Variáveis](#escopo-e-variaveis)
+    - [Estrutura Repetitiva](#estrutura-repetitiva)
+        - [Estruturas Repetitivas:](#estruturas-repetitivas)
+            - [While](#while)
+            - [Do-While](#do-while)
+            - [For](#for)
 
 ##
 
@@ -221,7 +226,7 @@ MeuProjeto
 
      ##
 
-    - ### Estrutura Condicional
+    - ### Estruturas Condicionais
         - ## If-else
         - Estrutura do If `Simples`:
             ```java
@@ -335,3 +340,42 @@ MeuProjeto
     ```
 
     Agora, a variável `status` pode ser acessada fora dos blocos `if` e `else`, permitindo seu uso em outras partes do código."
+
+    ##
+
+- ### Estrutura repetitiva
+    - ### Estruturas repetitivas
+        - ## While
+        - Estrutura do While:
+        ```java
+            while (expressao) {
+                // código a ser executado se a expressão for (TRUE)
+            }
+        ```
+        - `expressao`: O while vai rodar infinitamente até que a expressão seja (FALSE).
+
+        ##
+
+        - ## Do-While
+        - Estrutura do Do-While:
+        ```java
+            do {
+                // código a ser executado
+            } while (condição);
+        ```
+        O do-while executa o código pelo menos uma vez, sem verificar a condição. Depois de rodar ele verifica a condição e continua a executar o código enquanto a condição for verdadeira. É útil quando você precisa garantir que um código seja executado pelo menos uma vez, independentemente da condição.
+
+        ##
+            
+        - ## For
+        - Estrutura do For:
+        ```java
+            for (início; condição; incremento) {
+                // código a ser executado
+            }
+        ```
+        - **Início**: Aqui, inicializamos a variável de controle `i` com o valor 1.
+        - **Condição**: Esta parte verifica se `i` é menor ou igual a 10. Enquanto essa condição for verdadeira, o loop continuará executando até que a condição se torne falsa.
+        - **Incremento**: A cada iteração do loop, incrementamos o valor de `i` em 1. Se quisermos decrementar, podemos usar `i--` em vez de `i++`.
+
+        Obs: O `for` é usado quando sabemos a quantidade de repetições a serem realizadas, em contraste com o `while`, que é mais apropriado quando a condição de término não é conhecida.
