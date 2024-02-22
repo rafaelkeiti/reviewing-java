@@ -28,6 +28,11 @@
             - [While](#while)
             - [Do-While](#do-while)
             - [For](#for)
+    - [Introdução a Programação Orientada a Objetos:](#programaçao-orientada-a-objetos)
+        - [Classes](#classes)
+        - [Criando metodo para reaproveitamento | delegaçao](#criando-metodo-para-reaproveitamento-e-delegaçao)
+        - [Object e toString](#object-e-tostring)
+        - [Membros Estáticos](#membros-estaticos)
 
 ##
 
@@ -379,3 +384,224 @@ MeuProjeto
         - **Incremento**: A cada iteração do loop, incrementamos o valor de `i` em 1. Se quisermos decrementar, podemos usar `i--` em vez de `i++`.
 
         Obs: O `for` é usado quando sabemos a quantidade de repetições a serem realizadas, em contraste com o `while`, que é mais apropriado quando a condição de término não é conhecida.
+
+        ##
+
+- ### Programaçao Orientada a Objetos
+    - ## Classes
+    As Classes são chamadas através de instâncias, ex: 
+    
+    ```java
+        Triangle x, y; 
+        /* Criamos dois triângulos diferentes que possuí os mesmos atributos
+        que foram definidos na Classe */
+        x = new Triangle();
+        y = new Triangle();
+    ```
+    - É um tipo estruturado que pode conter (membros):
+    - Atributos (dados / campos)
+    - Métodos (funções / operações)
+
+    **Recursos da Classe:**
+            
+    - Construtores
+    - Sobrecarga
+    - Encapsulamento
+    - Herança
+    - Polimorfismo
+
+    **Organizando as Classes no Projeto**
+
+    - Entities: Classes que representam entidades do domínio, como Produto, Cliente e Triângulo.
+
+    - Service: Classes que fornecem funcionalidades específicas, como ProdutoService, ClienteService, EmailService e StorageService.
+
+    - Controllers: Classes responsáveis por receber e direcionar requisições, como ProdutoController e ClienteController.
+
+    - Utils: Classes que oferecem funcionalidades auxiliares, como Calculadora e Compactador.
+
+    - Others: Este package pode conter outros componentes que não se enquadram nas categorias acima, como views, repositórios, gerenciadores, etc.
+
+    **Exemplo de uma Classe, Entidade: Triangle**
+     
+     ```java
+        // Organizamos a classe dentro do pacote "entities"
+        package entities;
+
+        // Criamos a classe
+        public class Triangle {
+
+            //Definimos os atributos dos lados do triangulo
+            public double a;
+            public double b;
+            public double c;
+        }
+    ```
+    
+    No lado esquerdo, era necessário criar atributos distintos para separar em dois triângulos ou mais. Com a classe, podemos simplesmente instanciar e ele vai criar um triângulo diferente do outro com os atributos definidos na classe `Triangle`.
+
+    <div align="center">
+        <img src="https://media.discordapp.net/attachments/1039503054489255957/1206754990794735658/image.png?ex=65dd292a&is=65cab42a&hm=c19d2e46c0593aa6fb74d8119130ccd8372b481f7fb66e46cf09cad974a674d6&=&format=webp&quality=lossless">
+    </div>
+
+    ##
+
+    **Application:**
+
+    ```java
+        Scanner sc = new Scanner(System.in);
+        
+        //Instanciamos a Classe e precisamos importar a Classe
+        Triangle x, y;
+        // Instanciamos o objeto de 2 triângulos x e y
+        x = new Triangle();
+        y = new Triangle();
+       
+        System.out.println("Enter the measures of triangle X: ");
+        // Recebemos os valores do triângulo x
+        x.a = sc.nextDouble();
+        x.b = sc.nextDouble();
+        x.c = sc.nextDouble();
+       
+        System.out.println("Enter the measures of triangle Y: ");
+        // Recebemos os valores do triângulo y
+        y.a = sc.nextDouble();
+        y.b = sc.nextDouble();
+        y.c = sc.nextDouble();
+
+        // Realizando o cálculo da area e armazenando em uma váriavel
+        double areaX = x.area();
+        double areaY = y.area();
+    ```
+
+    **Classe ```Triangle```**
+    ```java
+        package entities;
+        
+        public class Triangle {
+       
+        public double a;
+        public double b;
+        public double c;
+    }
+    ```
+
+    ##
+
+    - ## Criando metodo para reaproveitamento e delegaçao
+    Podemos criar um método dentro da classe do próprio `Triangle` para calcular a área. Dessa forma, não precisamos realizar o mesmo cálculo várias vezes para cada um dos triângulos dentro do `Application`. Utilizamos o método para evitar a repetição e delegamos a responsabilidade dele.
+    
+    ```java
+        package entities;
+        
+        public class Triangle {
+       
+        public double a;
+        public double b;
+        public double c;
+        
+        // Método criado
+        public double area() {
+            double p = (a + b + c) / 2.0;
+            return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+    }
+    ```
+
+    **Como podemos utilizar o método:**
+
+    ```java
+        // Criando instâncias de triângulos
+        Triangle triangle1 = new Triangle();
+        Triangle triangle2 = new Triangle();
+
+        // Definindo os valores dos lados dos triângulos
+        triangle1.a = 3.0;
+        triangle1.b = 4.0;
+        triangle1.c = 5.0;
+
+        triangle2.a = 5.0;
+        triangle2.b = 7.0;
+        triangle2.c = 9.0;
+
+        // Calculando a área de cada triângulo usando o método area()
+        double areaTriangle1 = triangle1.area();
+        double areaTriangle2 = triangle2.area();
+
+        // Exibindo as áreas calculadas
+        System.out.println("Área do primeiro triângulo: " + areaTriangle1);
+        System.out.println("Área do segundo triângulo: " + areaTriangle2);
+    ```
+
+    ##
+
+    - ## Object e toString
+    Qualquer variável que tenhamos em nosso programa terá um tipo e cada um desses tipos é um "Object". O "Object" tem umas operações padrões
+
+    - getClass
+    - equals
+    - hashCode
+    - toString
+
+    Para que nossa classe retorne o resultado desses métodos em uma representação textual, precisamos criar o método toString:
+
+    ```java
+        package entities;
+        
+        public class Triangle {
+       
+        public String name;
+
+        public String toString() {
+            return name;
+        }
+    }
+    ```
+
+    Depois de criar o método, ao imprimir o objeto que criamos no Application, ele retornará a representação textual definida no método toString. Ex:
+
+    **Application:**
+
+    ```java
+        Triangle triangle = new Triangle();
+        System.out.println(triangle);
+    ```
+
+    ##
+
+    - ## Membros Estaticos
+
+        -  **Acesso Global:** Os membros estáticos podem ser acessados de qualquer lugar do programa, sem a necessidade de criar objetos da classe.
+
+        - **Compartilhamento de Dados:** Variáveis estáticas são compartilhadas entre todas as instâncias da classe, o que pode ser útil para armazenar dados que devem ser compartilhados por todas as instâncias.
+
+        - **Facilidade de Acesso:** Métodos estáticos podem ser chamados diretamente a partir do nome da classe, sem a necessidade de criar uma instância da classe.
+
+    #### Exemplo de uso em um programa:
+
+    Vamos supor que temos uma classe `Calculadora` com um método estático `soma`, que soma dois números.
+
+    ```java
+        public class Calculadora {
+            // Método estático para somar dois números
+            public static int soma(int a, int b) {
+                return a + b;
+            }
+        }
+    ```
+
+    #### Classe Separada:
+
+    Se a classe `Calculadora` estiver em um arquivo separado chamado `Calculadora.java`, você pode acessá-la da seguinte maneira:
+
+    ```java
+        public class Main {
+            public static void main(String[] args) {
+                int resultado = Calculadora.soma(5, 3);
+                // Saída: Resultado da soma: 8
+                System.out.println("Resultado da soma: " + resultado); 
+            }
+        }
+    ```
+
+    Os membros estáticos podem simplificar o acesso a funcionalidades comuns em todo o seu programa, sem a necessidade de criar instâncias desnecessárias de uma classe.
