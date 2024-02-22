@@ -84,7 +84,7 @@ MeuProjeto
 - ### Estrutura Sequencial
     - ### Expressoes aritmeticas
     <div align="center">
-        <img src="https://media.discordapp.net/attachments/1039503054489255957/1203822142836449291/image.png?ex=65d27dbc&is=65c008bc&hm=214af6d2878242568dba29f23e25685108575c00aec0986a601e8f9a96b48f46&=&format=webp&quality=lossless">
+        <img src="https://media.discordapp.net/attachments/1039503054489255957/1203822142836449291/image.png?ex=65e4f2bc&is=65d27dbc&hm=3f6a818c648b082a33a8029ee69d54cb85f434a119c69b84a9a6fb5dbf02048e&=&format=webp&quality=lossless">
     </div>
 
     ##
