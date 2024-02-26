@@ -33,6 +33,11 @@
         - [Criando metodo para reaproveitamento | delegaçao](#criando-metodo-para-reaproveitamento-e-delegaçao)
         - [Object e toString](#object-e-tostring)
         - [Membros Estáticos](#membros-estaticos)
+    - [Construtores, this, sobrecarga e encapsulamento:](#construtores-this-sobrecarga-e-encapsulamento)
+        - [Construtores](#construtor)
+        - [Sobrecarga](#sobrecarga)
+        - [Encapsulamento](#encapsulamento)
+        - [Modificadores de acesso](#modificadores-de-acesso) 
 
 ##
 
@@ -605,3 +610,236 @@ MeuProjeto
     ```
 
     Os membros estáticos podem simplificar o acesso a funcionalidades comuns em todo o seu programa, sem a necessidade de criar instâncias desnecessárias de uma classe.
+
+    ##
+
+- ### Construtores, this, sobrecarga e encapsulamento
+
+    - ## Construtores
+    Operação especial da classe, é executada quando instanciamos o objeto.
+
+    - Usos:
+        - Iniciar valores dos atributos.
+        - Permitir ou obrigar que o objeto receba dados ou dependências no momento da sua instanciação (injeção de dependência)
+        - Uma classe pode ter mais de um construtor (sobrecarga)
+
+    - Construtor padrão:
+        
+        Caso o construtor não seja específicado, a classe disponibiliza um construtor padrão. Ex:
+
+        ```java
+            Exemplo exemplo = new Exemplo();
+        ```
+    
+    - Construtor personalizado:
+
+    Ex da classe Pessoa:
+
+    ```java
+        public class Pessoa {
+        private String nome;
+        private int idade;
+        
+        // Construtor com parâmetros
+        /* O this faz referência ao atributo do objeto Pessoa declarado a cima
+        e diferencia dos atributos que estão sendo recebidos. */
+        public Pessoa(String nome, int idade) {
+            this.nome = nome;
+            this.idade = idade;
+        }
+    }
+    ```
+
+    Ex da classe Main:
+
+    ```java
+        import java.util.Scanner;
+
+        public class Main {
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);
+                
+                // Solicita ao usuário que digite o nome e a idade da primeira pessoa
+                System.out.println("Digite o nome da primeira pessoa:");
+                String nome1 = scanner.nextLine();
+                
+                System.out.println("Digite a idade da primeira pessoa:");
+                int idade1 = scanner.nextInt();
+                
+                // Cria um objeto Pessoa usando o construtor com parâmetros
+                Pessoa pessoa1 = new Pessoa(nome1, idade1);                   
+            }
+        }
+    ```
+
+    Dessa forma é obrigatório que a pessoa digite o nome e a idade iniciando os valores.
+
+    ##
+
+    - ## Sobrecarga
+    É um recurso de uma classe que permite mais de uma operação com o mesmo nome, porém com diferentes listas de parâmetros.
+
+    Ex da classe Pessoa:
+
+    ```java
+        public class Pessoa {
+        private String nome;
+        private int idade;
+        
+        // Construtor com parâmetros
+        public Pessoa(String nome, int idade) {
+            this.nome = nome;
+            this.idade = idade;
+        }
+
+        /* Realizando Sobrecarga: agora, quando utilizamos apenas o nome como argumento, o Java inicia números de objetos e arrays com o valor 0 por padrão. */
+        public Pessoa(String nome) {
+            this.nome = nome;
+            this.idade = 0; // Opcional
+        }
+    }
+    ```
+
+    ##
+
+    - ## Encapsulamento
+    É utilizado para esconder detalhes de implementação de uma classe, expondo apenas operações seguras (getters e setters) e que mantenham os objetos em um estado consistente. 
+
+    - Analogia:
+
+    <div align="center">
+        <img src="https://media.discordapp.net/attachments/1039503054489255957/1210763562490794094/image.png?ex=65ebbe70&is=65d94970&hm=de6d2d8ee6a77512645122e5bbb4c7f57d114738bf83e0738de2053289e43472&=&format=webp&quality=lossless">
+    </div>
+
+    O rádio possui diversos circuitos, conexões e diversas operações acontecendo internamente. No entanto, o usuário não pode acessar diretamente esses circuitos para evitar erros ou até corromper a integridade do aparelho. O aparelho de som esconde todos os detalhes e disponibiliza apenas operações que não vão danificar o dispositivo.
+
+    - Um atributo NÃO deve expor nenhum atributo (Modificador de acesso **private**)
+
+    - Os atributos devem ser acessados por meio de métodos de get e set.
+    
+
+    Ex da classe Pessoa:
+
+    ```java
+        public class Pessoa {
+        // Definimos o Modificador de acesso como **private**
+        private String nome;
+        private int idade;
+
+        // Criamos os getters e setters para realizar as modificações.
+        public String getNome() {
+            return nome;
+        }
+
+        public int getIdade() {
+            return idade;
+        } 
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public void setIdade(int idade) {
+            this.idade = idade;
+        } 
+    }
+    ```
+
+    Ex da classe Main:
+
+    ```java
+        import java.util.Scanner;
+
+        public class Main {
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);
+                //Instânciando o objeto
+                Pessoa pessoa = new Pessoa();
+                
+                System.out.println("Digite o nome da primeira pessoa:");
+                String nome1 = scanner.nextLine();
+                //Utilizando método set
+                pessoa.setNome(nome1);
+                
+                System.out.println("Digite a idade da primeira pessoa:");
+                int idade1 = scanner.nextInt();
+                //Utilizando método set
+                pessoa.setIdade(idade1);
+
+                //Utilizando método get
+                System.out.println("Nome " + pessoa.getName());
+                System.out.println("Idade " + pessoa.getIdade());
+
+            }
+        }
+    ```
+
+    A forma correta de realizar alterações é através dos setters. NÃO podemos instanciar o objeto e alterar diretamente o atributo, como no exemplo abaixo:
+
+    ```java
+        //FORMA ERRADA!
+
+        import java.util.Scanner;
+
+        public class Main {
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);
+                //Instânciando o objeto
+                Pessoa pessoa = new Pessoa();
+                
+                System.out.println("Digite o nome da primeira pessoa:");
+                String nome1 = scanner.nextLine();
+                // Utilizando o **private** previne alterações dessa forma abaixo:
+                pessoa.nome = nome1;
+                
+                System.out.println("Digite a idade da primeira pessoa:");
+                int idade1 = scanner.nextInt();
+                // Utilizando o **private** previne alterações dessa forma abaixo:
+                pessoa.idade = idade1;
+
+                System.out.println("Nome " + pessoa.getName());
+                System.out.println("Idade " + pessoa.getIdade());
+
+            }
+        }
+    ```
+    
+    ##
+
+    - ## Modificadores de acesso
+        - Tipos:
+            - **private** | o membro só pode ser acessado na própria classe.
+                Ex:
+                ```java
+                    public class Pessoa {
+                    private String nome;
+                }
+                ```
+            
+            - (nada) | o membro pode ser acessado nas classes que pertencem ao mesmo PACOTE.
+                Ex:
+                ```java
+                    public class Pessoa {
+                    String nome;
+                }
+                ```
+
+            - **protected** | o membro pode ser acessado no mesmo pacote, bem como em subclasses de pacotes diferentes.
+                Ex:
+                ```java
+                    public class Pessoa {
+                    protected String nome;
+                }
+                ```
+            
+            - **public** | o membro pode ser acessado por todas classes (ao menos que ele resida em um módulo diferente que não exporte o pacote onde ele está)
+                Ex:
+                ```java
+                    public class Pessoa {
+                    public String nome;
+                }
+                ```
+        
+        <div align="center">
+            <img src="https://media.discordapp.net/attachments/1039503054489255957/1211424566258171905/image.png?ex=65ee260b&is=65dbb10b&hm=ce5ae22e8df5e224d9b7bf2e3e6443e49ba528d530f804c15382a7324702ddf3&=&format=webp&quality=lossless">
+        </div>
